@@ -5,11 +5,15 @@ from transcription_tool.speech2text import speech2text
 
 
 def transcribe(
-        file_path: str, hf_token: str, language: str = "german", num_speakers: int = None, device: str = "cpu",
+        file_path: str, hf_token: str, language: str = "german", num_speakers: int = None,
         s2t_model: str = "openai/whisper-tiny"
 ):
     print("Diarizing speakers...")
-    diarized_speakers = diarize_speakers(file_path, hf_token=hf_token, num_speakers=num_speakers, device=device)
+    diarized_speakers = diarize_speakers(
+        file_path,
+        hf_token=hf_token,
+        num_speakers=num_speakers,
+    )
 
     print("Transcripting audio...")
     transcript = list()
@@ -19,7 +23,6 @@ def transcribe(
             speaker_section["audio"],
             model=s2t_model,
             language=language,
-            device=device,
         )
 
         transcript.append(

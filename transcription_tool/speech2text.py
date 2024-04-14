@@ -1,12 +1,14 @@
+import torch
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
 
-def speech2text(audio: dict, model: str = "openai/whisper-tiny", device: str = "cpu", language: str = "german") -> str:
+def speech2text(audio: dict, model: str = "openai/whisper-tiny", language: str = "german") -> str:
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+
     # load model from huggingface
     processor = WhisperProcessor.from_pretrained(model)
-    model = WhisperForConditionalGeneration.from_pretrained(model)
-
-    # load pipeline to device, either cuda or cpu
+    model = WhisperForConditionalGeneration.from_pretrained(model, torch_dtype=torch_dtype)
     model.to(device)
 
     # specify task and language

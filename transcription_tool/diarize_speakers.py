@@ -4,8 +4,10 @@ from pyannote.core import Segment
 
 
 def diarize_speakers(
-        file_path: str, hf_token: str, num_speakers: int = None, tolerance: float = 1.0, device: str = "cpu"
+        file_path: str, hf_token: str, num_speakers: int = None, tolerance: float = 1.0
 ) -> list[dict]:
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+
     pipeline = Pipeline.from_pretrained(
         "pyannote/speaker-diarization-3.1",
         use_auth_token=hf_token,

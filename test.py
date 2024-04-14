@@ -10,7 +10,6 @@ from transcription_tool import get_secret, diarize_speakers, speech2text, transc
 transcribe(
     "./data/sample.wav",
     hf_token=get_secret("./secrets.yaml", "hf-token"),
-    device="cpu",
     s2t_model="openai/whisper-tiny",
     language="german",
     num_speakers=2
