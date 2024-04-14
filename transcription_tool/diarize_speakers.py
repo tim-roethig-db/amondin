@@ -17,12 +17,7 @@ def diarize_speakers(
     pipeline.to(torch.device(device))
 
     # inference on the whole file
-    #annotation = pipeline(file_path, num_speakers=num_speakers)
-
-    # inference on excerpt
-    excerpt = Segment(start=0.0, end=30.0)
-    waveform, sample_rate = Audio().crop(file_path, excerpt)
-    annotation = pipeline({"waveform": waveform, "sample_rate": sample_rate}, num_speakers=num_speakers)
+    annotation = pipeline(file_path, num_speakers=num_speakers)
 
     # merge passages from same speaker if occurring in less then tolerance after each other
     annotation = annotation.support(tolerance)
