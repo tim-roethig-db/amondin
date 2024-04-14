@@ -6,11 +6,11 @@ from tools import get_secret, convert_audio_to_wav
 
 
 def diarize_speakers(
-        file_path: str, num_speakers: int = None, tolerance: float = 1.0, device: str = "cpu"
+        file_path: str, hf_token: str, num_speakers: int = None, tolerance: float = 1.0, device: str = "cpu"
 ) -> list[dict]:
     pipeline = Pipeline.from_pretrained(
         "pyannote/speaker-diarization-3.1",
-        use_auth_token=get_secret("hf-token"),
+        use_auth_token=hf_token,
     )
 
     # load pipeline to device, either cuda or cpu
@@ -54,4 +54,4 @@ def diarize_speakers(
 
 
 if __name__ == "__main__":
-    print(diarize_speakers("data/sample.wav"))
+    print(diarize_speakers("../data/sample.wav"))

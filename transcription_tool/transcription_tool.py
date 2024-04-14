@@ -2,14 +2,15 @@ import pandas as pd
 
 from diarize_speakers import diarize_speakers
 from speech2text import speech2text
+from tools import get_secret
 
 
-def main(
-        file_path: str, language: str = "german", num_speakers: int = None, device: str = "cpu",
+def transcribe(
+        file_path: str, hf_token: str, language: str = "german", num_speakers: int = None, device: str = "cpu",
         s2t_model: str = "openai/whisper-tiny"
 ):
     print("Diarizing speakers...")
-    diarized_speakers = diarize_speakers(file_path, num_speakers=num_speakers, device=device)
+    diarized_speakers = diarize_speakers(file_path, hf_token=hf_token, num_speakers=num_speakers, device=device)
 
     print("Transcripting audio...")
     transcript = list()
@@ -34,8 +35,9 @@ def main(
 
 
 if __name__ == "__main__":
-    main(
-        "data/sample.wav",
+    transcribe(
+        "./data/sample.wav",
+        hf_token=get_secret("./secrets.yaml", "hf-token"),
         device="cpu",
         s2t_model="openai/whisper-tiny",
         language="german",

@@ -28,6 +28,6 @@ def speech2text(audio: dict, model: str = "openai/whisper-tiny", device: str = "
 
 
 if __name__ == "__main__":
-    diarized_speakers = diarize_speakers("data/sample.wav")
+    diarized_speakers = diarize_speakers("../data/sample.wav")
     print(diarized_speakers)
     print(speech2text(diarized_speakers[0]["audio"]))

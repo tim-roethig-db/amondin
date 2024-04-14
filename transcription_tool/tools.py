@@ -4,8 +4,8 @@ import librosa
 import soundfile
 
 
-def get_secret(key: str):
-    with open("secrets.yaml", "r") as file:
+def get_secret(path2yaml: str, key: str):
+    with open(path2yaml, "r") as file:
         secrets = yaml.safe_load(file)
 
     return secrets[key]
@@ -24,4 +24,4 @@ def convert_audio_to_wav(input_path: str, output_path: str):
 
 
 if __name__ == "__main__":
-    convert_audio_to_wav("data/sample.mp3", "data/sample.wav")
+    convert_audio_to_wav("../data/sample.mp3", "data/sample.wav")
