@@ -7,7 +7,7 @@ def speech2text(audio: dict, model: str = "openai/whisper-tiny", language: str =
     torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
     # load model from huggingface
-    processor = WhisperProcessor.from_pretrained(model)
+    processor = WhisperProcessor.from_pretrained(model, torch_dtype=torch_dtype)
     model = WhisperForConditionalGeneration.from_pretrained(model, torch_dtype=torch_dtype)
     model.to(device)
 
