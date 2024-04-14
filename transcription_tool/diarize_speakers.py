@@ -2,8 +2,6 @@ import torch
 from pyannote.audio import Pipeline, Audio
 from pyannote.core import Segment
 
-from tools import get_secret, convert_audio_to_wav
-
 
 def diarize_speakers(
         file_path: str, hf_token: str, num_speakers: int = None, tolerance: float = 1.0, device: str = "cpu"
@@ -51,7 +49,3 @@ def diarize_speakers(
         diarized_speakers.append(segment)
 
     return diarized_speakers
-
-
-if __name__ == "__main__":
-    print(diarize_speakers("../data/sample.wav"))

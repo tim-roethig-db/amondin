@@ -1,7 +1,5 @@
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
-from diarize_speakers import diarize_speakers
-
 
 def speech2text(audio: dict, model: str = "openai/whisper-tiny", device: str = "cpu", language: str = "german") -> str:
     # load model from huggingface
@@ -25,9 +23,3 @@ def speech2text(audio: dict, model: str = "openai/whisper-tiny", device: str = "
 
     # return sting in list
     return result[0]
-
-
-if __name__ == "__main__":
-    diarized_speakers = diarize_speakers("../data/sample.wav")
-    print(diarized_speakers)
-    print(speech2text(diarized_speakers[0]["audio"]))

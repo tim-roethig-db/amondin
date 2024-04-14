@@ -1,8 +1,7 @@
 import pandas as pd
 
-from diarize_speakers import diarize_speakers
-from speech2text import speech2text
-from tools import get_secret
+from transcription_tool.diarize_speakers import diarize_speakers
+from transcription_tool.speech2text import speech2text
 
 
 def transcribe(
@@ -32,14 +31,3 @@ def transcribe(
 
     # save transcript
     print(transcript.to_markdown(index=False))
-
-
-if __name__ == "__main__":
-    transcribe(
-        "./data/sample.wav",
-        hf_token=get_secret("./secrets.yaml", "hf-token"),
-        device="cpu",
-        s2t_model="openai/whisper-tiny",
-        language="german",
-        num_speakers=2
-    )
