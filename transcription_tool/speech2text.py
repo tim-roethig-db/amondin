@@ -15,7 +15,7 @@ def speech2text(audio: dict, model: str = "openai/whisper-tiny", language: str =
     forced_decoder_ids = processor.get_decoder_prompt_ids(language=language, task="transcribe")
 
     # create input
-    input_features = processor(audio["raw"], sampling_rate=audio["sampling_rate"], return_tensors="pt").input_features
+    input_features = processor(audio["raw"], sampling_rate=audio["sampling_rate"], return_tensors="pt", torch_dtype=torch_dtype).input_features
     input_features.to(device)
 
     # run inference
