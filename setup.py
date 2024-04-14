@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="transcription_tool",
     version="0.0.1",
-    packages=find_packages(),
+    packages=find_packages("transcription_tool"),
     install_requires=[
         "transformers==4.39.3",
         "pyannote.audio==3.1.1",
