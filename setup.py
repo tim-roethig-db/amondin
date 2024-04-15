@@ -5,6 +5,7 @@ setup(
     name="amondin",
     version="0.0.1",
     author="Tim Röthig",
+    python_requires=">=3.9",
     packages=find_packages(),
     install_requires=[
         "transformers==4.39.3",
