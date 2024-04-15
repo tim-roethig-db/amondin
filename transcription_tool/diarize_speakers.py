@@ -1,6 +1,5 @@
 import torch
 from pyannote.audio import Pipeline, Audio
-from pyannote.core import Segment
 
 
 def diarize_speakers(
@@ -34,7 +33,7 @@ def diarize_speakers(
     segments = annotation.get_timeline()
 
     # store all passages in a list of dicts
-    diarized_speakers = list()
+    diarized_speakers = []
     for segment in segments:
         # get audio passages as numpy array
         waveform, sample_rate = Audio().crop(file_path, segment)

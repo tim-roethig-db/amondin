@@ -13,7 +13,8 @@ def transcribe(
     :param file_path:
     :param hf_token:
     :param language: Set the language for improved performance. None results in language detection.
-    :param num_speakers: Set the number of speakers for improved performance. None results in auto-detection.
+    :param num_speakers: Set the number of speakers for improved performance. None results in
+    auto-detection.
     :param s2t_model:
     :return:
     """
@@ -25,7 +26,7 @@ def transcribe(
     )
 
     print("Transcripting audio...")
-    transcript = list()
+    transcript = []
     for i, speaker_section in enumerate(diarized_speakers):
         print(f"Transcripting part {i+1} of {len(diarized_speakers)}")
         text = speech2text(
