@@ -1,3 +1,7 @@
+"""
+Module containing useful tools for the transcription_tool
+"""
+
 import yaml
 import ffmpeg
 import librosa
