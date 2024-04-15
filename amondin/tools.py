@@ -1,5 +1,5 @@
 """
-Module containing useful tools for the transcription_tool
+Module containing useful tools for the amondin
 """
 
 import yaml

@@ -1,4 +1,4 @@
-from transcription_tool import get_secret, diarize_speakers, speech2text, transcribe, convert_audio_to_wav
+from amondin import get_secret, diarize_speakers, speech2text, transcribe, convert_audio_to_wav
 
 
 # print(diarize_speakers("./data/sample.wav", hf_token=get_secret("./secrets.yaml", "hf-token")))

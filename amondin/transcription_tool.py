@@ -4,8 +4,8 @@ Main module of transcription tool
 
 import pandas as pd
 
-from transcription_tool.diarize_speakers import diarize_speakers
-from transcription_tool.speech2text import speech2text
+from amondin.diarize_speakers import diarize_speakers
+from amondin.speech2text import speech2text
 
 
 def transcribe(

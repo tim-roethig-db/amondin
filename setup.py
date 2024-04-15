@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name="transcription_tool",
+    name="amondin",
     version="0.0.1",
     author="Tim Röthig",
     packages=find_packages(),
