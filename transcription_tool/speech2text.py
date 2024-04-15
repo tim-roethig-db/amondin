@@ -3,6 +3,13 @@ from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
 
 def speech2text(audio: dict, model: str = "openai/whisper-tiny", language: str = "german") -> str:
+    """
+    Translate audio to text
+    :param audio: dictionary containing audio as numpy array of shape (n,) and the sampling rate
+    :param model:
+    :param language:
+    :return:
+    """
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 

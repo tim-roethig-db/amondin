@@ -8,6 +8,15 @@ def transcribe(
         file_path: str, hf_token: str, language: str = "german", num_speakers: int = None,
         s2t_model: str = "openai/whisper-tiny"
 ):
+    """
+    Transcribe a give audio.wav file.
+    :param file_path:
+    :param hf_token:
+    :param language: Set the language for improved performance. None results in language detection.
+    :param num_speakers: Set the number of speakers for improved performance. None results in auto-detection.
+    :param s2t_model:
+    :return:
+    """
     print("Diarizing speakers...")
     diarized_speakers = diarize_speakers(
         file_path,

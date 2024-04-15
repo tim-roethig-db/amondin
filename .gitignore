@@ -127,3 +127,4 @@ dmypy.json
 
 data/
 secrets.yaml
+*.csv

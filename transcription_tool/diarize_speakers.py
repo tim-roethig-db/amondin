@@ -6,6 +6,14 @@ from pyannote.core import Segment
 def diarize_speakers(
         file_path: str, hf_token: str, num_speakers: int = None, tolerance: float = 1.0
 ) -> list[dict]:
+    """
+    Detect speakers in audio.wav file and label the segments of each speaker accordingly
+    :param file_path:
+    :param hf_token: HF token since the pyanote model needs authentication
+    :param num_speakers: Set to None to self detect the number of speakers
+    :param tolerance:
+    :return:
+    """
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
     pipeline = Pipeline.from_pretrained(
@@ -40,7 +48,10 @@ def diarize_speakers(
         segment = {
             "speaker": list(speaker)[0],
             "time_stamp": str(segment),
-            "audio": {"raw": waveform, "sampling_rate": sample_rate},
+            "audio": {
+                "raw": waveform,
+                "sampling_rate": sample_rate,
+            },
         }
 
         diarized_speakers.append(segment)
