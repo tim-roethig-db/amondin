@@ -1,3 +1,7 @@
+"""
+Module containing the diarize_speaker function
+"""
+
 import torch
 from pyannote.audio import Pipeline, Audio
 

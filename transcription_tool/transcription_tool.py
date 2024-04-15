@@ -1,3 +1,7 @@
+"""
+Main module of transcription tool
+"""
+
 import pandas as pd
 
 from transcription_tool.diarize_speakers import diarize_speakers

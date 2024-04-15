@@ -1,3 +1,7 @@
+"""
+Module containing the speech2text function
+"""
+
 import torch
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
