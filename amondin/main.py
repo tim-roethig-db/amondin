@@ -9,11 +9,12 @@ from amondin.speech2text import speech2text
 
 
 def transcribe(
-        input_file_path: str, output_file_path: str, hf_token: str, language: str = "german", num_speakers: int = None,
-        s2t_model: str = "openai/whisper-tiny"
+        input_file_path: str, output_file_path: str, hf_token: str, device: str = "cpu",
+        language: str = "german", num_speakers: int = None, s2t_model: str = "openai/whisper-tiny"
 ):
     """
     Transcribe a give audio.wav file.
+    :param device: Device to run the model on [cpu, cuda or cuda:x]
     :param output_file_path:
     :param input_file_path:
     :param hf_token:
@@ -23,17 +24,21 @@ def transcribe(
     :param s2t_model:
     :return:
     """
+
+    print(f"Running on {device}.")
+
     print("Diarizing speakers...")
     diarized_speakers = diarize_speakers(
         input_file_path,
         hf_token=hf_token,
         num_speakers=num_speakers,
+        device=device
     )
 
-    print("Transcripting audio...")
+    print("Transcribing audio...")
     transcript = []
     for i, speaker_section in enumerate(diarized_speakers):
-        print(f"Transcripting part {i+1} of {len(diarized_speakers)}")
+        print(f"Transcribing part {i+1} of {len(diarized_speakers)}")
         text = speech2text(
             speaker_section["audio"],
             model=s2t_model,
