@@ -2,8 +2,8 @@
 Main module of transcription tool
 """
 
-import pandas as pd
 from pathlib import Path
+import pandas as pd
 
 from amondin.tools import convert_audio_to_wav
 from amondin.diarize_speakers import diarize_speakers
