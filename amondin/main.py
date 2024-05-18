@@ -30,11 +30,14 @@ def transcribe(
     print(f"Running on {device}...")
 
     if not input_file_path.endswith(".wav"):
-        print("Converting audio to .wav...")
+        print(f"Converting {input_file_path} to .wav...")
+        # get filename
         file_name = Path(input_file_path).stem
-        print(file_name)
+        # convert input file to .wav and store it to disk
         convert_audio_to_wav(input_file_path, f"{file_name}.wav")
+        # proceed with newly created .wav file
         input_file_path = f"{file_name}.wav"
+        print(f"Created {input_file_path}")
 
     print("Diarizing speakers...")
     diarized_speakers = diarize_speakers(
