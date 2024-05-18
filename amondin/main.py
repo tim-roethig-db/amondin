@@ -25,7 +25,7 @@ def transcribe(
     :return:
     """
 
-    print(f"Running on {device}.")
+    print(f"Running on {device}...")
 
     print("Diarizing speakers...")
     diarized_speakers = diarize_speakers(

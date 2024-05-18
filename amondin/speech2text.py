@@ -6,7 +6,7 @@ import torch
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
 
-def speech2text(audio: dict, device: str, model: str = "openai/whisper-tiny", language: str = "german") -> str:
+def speech2text(audio: dict, device: str, model: str, language: str) -> str:
     """
     Translate audio to text
     :param device: Device to run the model on [cpu, cuda or cuda:x]
