@@ -31,7 +31,7 @@ def transcribe(
 
     if not input_file_path.endswith("wav"):
         file_name = Path(input_file_path).stem
-        convert_audio_to_wav(input_file_path, )
+        convert_audio_to_wav(input_file_path, f"{file_name}.wav")
 
     print("Diarizing speakers...")
     diarized_speakers = diarize_speakers(
