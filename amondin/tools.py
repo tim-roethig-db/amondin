@@ -1,5 +1,5 @@
 """
-Module containing useful tools for the amondin
+Module containing useful tools for amondin
 """
 
 import yaml

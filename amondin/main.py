@@ -19,11 +19,11 @@ def transcribe(
     :param device: Device to run the model on [cpu, cuda or cuda:x]
     :param output_file_path:
     :param input_file_path:
-    :param hf_token:
+    :param hf_token: You Huggingface token to access gated models
     :param language: Set the language for improved performance. None results in language detection.
     :param num_speakers: Set the number of speakers for improved performance. None results in
     auto-detection.
-    :param s2t_model:
+    :param s2t_model: Select the speach to text model you want to use (tested on openai/whisper-*)
     :return:
     """
 
