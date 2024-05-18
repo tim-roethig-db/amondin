@@ -11,7 +11,7 @@ A simple transcription tool able to segment speakers and convert audio to text.
 - return transcribed dialogs as .csv
 
 ## Installation
-    pip install git+https://github.com/tim-roethig-db/transcription-tool.git@master
+    pip install git+https://github.com/tim-roethig-db/amondin.git@master
 
 ## Usage
     from amondin import transcribe
