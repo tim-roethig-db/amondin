@@ -49,4 +49,4 @@ def transcribe(
 
     # save transcript
     print(transcript.to_markdown(index=False))
-    transcript.to_csv("transcript.csv", index=False, sep=";")
+    transcript.to_csv(output_file_path, index=False, sep=";")
