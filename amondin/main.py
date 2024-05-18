@@ -29,7 +29,8 @@ def transcribe(
 
     print(f"Running on {device}...")
 
-    if not input_file_path.endswith("wav"):
+    print("Conversting audio to .wav...")
+    if not input_file_path.endswith(".wav"):
         file_name = Path(input_file_path).stem
         print(file_name)
         convert_audio_to_wav(input_file_path, f"{file_name}.wav")
