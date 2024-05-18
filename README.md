@@ -1,5 +1,5 @@
 # Amondin
-A simple transcription tool able to segment speakers and convert audio to text.
+A simple and private transcription tool able to segment speakers and convert audio to text.
 
 ## Features
 
