@@ -7,7 +7,11 @@ from pyannote.audio import Pipeline, Audio
 
 
 def diarize_speakers(
-        file_path: str, hf_token: str, device: str, num_speakers: int, tolerance: float = 1.0
+        file_path: str,
+        hf_token: str,
+        device: str,
+        num_speakers: int,
+        tolerance: float = 1.0
 ) -> list[dict]:
     """
     Detect speakers in audio.wav file and label the segments of each speaker accordingly
