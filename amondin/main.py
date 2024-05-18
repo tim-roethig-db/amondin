@@ -43,6 +43,7 @@ def transcribe(
             speaker_section["audio"],
             model=s2t_model,
             language=language,
+            device=device
         )
 
         transcript.append(
