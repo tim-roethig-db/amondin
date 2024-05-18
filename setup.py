@@ -13,10 +13,10 @@ setup(
         "pyannote.core==5.0.0",
         "pyyaml==6.0.1",
         "ffmpeg-python==0.2.0",
-        "pandas==2.2.2",
+        "pandas==2.2.1",
         "librosa==0.10.1",
         "soundfile==0.12.1",
         "numpy==1.26.4",
-        "torch==2.2.2",
+        "torch==2.2.1",
     ]
 )

@@ -1,1 +1,1 @@
-Simple Transcription tool using Huggigface models.
+Simple Transcription tool using Huggingface models.
