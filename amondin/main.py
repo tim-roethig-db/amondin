@@ -11,8 +11,12 @@ from amondin.speech2text import speech2text
 
 
 def transcribe(
-        input_file_path: str, output_file_path: str, hf_token: str, device: str = "cpu",
-        language: str = "german", num_speakers: int = None, s2t_model: str = "openai/whisper-tiny"
+        input_file_path: str, output_file_path: str,
+        hf_token: str,
+        device: str = "cpu",
+        language: str = None,
+        num_speakers: int = None,
+        s2t_model: str = "openai/whisper-tiny"
 ):
     """
     Transcribe a give audio.wav file.
