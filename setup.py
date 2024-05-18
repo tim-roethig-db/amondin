@@ -17,6 +17,6 @@ setup(
         "librosa==0.10.1",
         "soundfile==0.12.1",
         "numpy==1.26.4",
-        "torch==2.2.1",
+        "torch==2.2.2",
     ]
 )
