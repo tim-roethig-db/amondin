@@ -13,7 +13,7 @@ def diarize_speakers(
     Detect speakers in audio.wav file and label the segments of each speaker accordingly
     :param device: Device to run the model on
     :param file_path:
-    :param hf_token: HF token since the pyanote model needs authentication
+    :param hf_token: HF token since the pyannote model needs authentication
     :param num_speakers: Set to None to self detect the number of speakers
     :param tolerance:
     :return:
@@ -30,7 +30,7 @@ def diarize_speakers(
     # inference on the whole file
     annotation = pipeline(file_path, num_speakers=num_speakers)
 
-    # merge passages from same speaker if occurring in less then tolerance after each other
+    # merge passages from same speaker if occurring in less than tolerance after each other
     annotation = annotation.support(tolerance)
 
     # get the time stamps of each speakers passage
