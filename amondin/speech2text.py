@@ -1,5 +1,5 @@
 """
-Module containing the speech2text function
+Module containing the speech to text function
 """
 
 import torch

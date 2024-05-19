@@ -6,7 +6,7 @@ from pathlib import Path
 import pandas as pd
 
 from amondin.tools import convert_audio_to_wav
-from amondin.diarize_speakers import diarize_speakers
+from amondin.segment_speakers import segment_speakers
 from amondin.speech2text import speech2text
 
 
@@ -43,8 +43,8 @@ def transcribe(
         input_file_path = f"{file_name}.wav"
         print(f"Created {input_file_path}")
 
-    print("Diarizing speakers...")
-    diarized_speakers = diarize_speakers(
+    print("Segmenting speakers...")
+    speaker_segments = segment_speakers(
         input_file_path,
         hf_token=hf_token,
         num_speakers=num_speakers,
@@ -53,8 +53,8 @@ def transcribe(
 
     print("Transcribing audio...")
     transcript = []
-    for i, speaker_section in enumerate(diarized_speakers):
-        print(f"Transcribing part {i+1} of {len(diarized_speakers)}")
+    for i, speaker_section in enumerate(speaker_segments):
+        print(f"Transcribing part {i+1} of {len(speaker_segments)}")
         text = speech2text(
             speaker_section["audio"],
             model=s2t_model,

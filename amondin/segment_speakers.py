@@ -1,12 +1,12 @@
 """
-Module containing the diarize_speaker function
+Module containing the segment_speakers function
 """
 
 import torch
 from pyannote.audio import Pipeline, Audio
 
 
-def diarize_speakers(
+def segment_speakers(
         file_path: str,
         hf_token: str,
         device: str,
@@ -41,7 +41,7 @@ def diarize_speakers(
     segments = annotation.get_timeline()
 
     # store all passages in a list of dicts
-    diarized_speakers = []
+    speaker_segments = []
     for segment in segments:
         # get audio passages as numpy array
         waveform, sample_rate = Audio().crop(file_path, segment)
@@ -61,6 +61,6 @@ def diarize_speakers(
             },
         }
 
-        diarized_speakers.append(segment)
+        speaker_segments.append(segment)
 
-    return diarized_speakers
+    return speaker_segments
