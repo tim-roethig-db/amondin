@@ -15,7 +15,7 @@ def speech2text(
     """
     Translate audio to text
     :param device: Device to run the model on [cpu, cuda or cuda:x]
-    :param audio: dictionary containing audio as numpy array of shape (n,) and the sampling rate
+    :param audio: dictionary containing audio as numpy array of shape (n) and the sampling rate
     :param model:
     :param language:
     :return:
