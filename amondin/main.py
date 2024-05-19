@@ -30,7 +30,7 @@ def transcribe(
     :param s2t_model: Select the speach to text model you want to use (tested on openai/whisper-*)
     :return:
     """
-    print("test4")
+
     print(f"Running on {device}...")
 
     if not input_file_path.endswith(".wav"):
