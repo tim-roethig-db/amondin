@@ -33,7 +33,7 @@ def transcribe(
     """
 
     print(f"Running on {device}...")
-
+    """
     if not input_file_path.endswith(".wav"):
         print(f"Converting {input_file_path} to .wav...")
         # get filename
@@ -43,8 +43,8 @@ def transcribe(
         # proceed with newly created .wav file
         input_file_path = f"{file_name}.wav"
         print(f"Created {input_file_path}")
-
-    waveform, sample_rate = torchaudio.load("audio.wav")
+    """
+    waveform, sample_rate = torchaudio.load(input_file_path)
 
     audio = {"waveform": waveform, "sample_rate": sample_rate}
 
