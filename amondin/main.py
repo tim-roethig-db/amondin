@@ -35,7 +35,6 @@ def transcribe(
 
     print(f"Loading {input_file_path}...")
     waveform, sample_rate = torchaudio.load(input_file_path)
-    print(waveform.shape)
     audio = {
         "waveform": waveform,
         "sample_rate": sample_rate
