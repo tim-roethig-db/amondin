@@ -12,11 +12,9 @@ setup(
         "pyannote.audio",
         "pyannote.core",
         "pyyaml",
-        "ffmpeg-python",
         "pandas",
-        "librosa",
-        "soundfile",
         "numpy",
         "torch",
+        "torchaudio",
     ]
 )

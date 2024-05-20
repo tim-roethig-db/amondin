@@ -2,11 +2,10 @@
 Main module of transcription tool
 """
 
-from pathlib import Path
 import pandas as pd
 import torchaudio
 
-from amondin.tools import convert_audio_to_wav
+from amondin.tools import get_secret
 from amondin.segment_speakers import segment_speakers
 from amondin.speech2text import speech2text
 
@@ -33,8 +32,13 @@ def transcribe(
     """
 
     print(f"Running on {device}...")
+
+    print(f"Loading {input_file_path}...")
     waveform, sample_rate = torchaudio.load(input_file_path)
-    audio = {"waveform": waveform, "sample_rate": sample_rate}
+    audio = {
+        "waveform": waveform,
+        "sample_rate": sample_rate
+    }
 
     print("Segmenting speakers...")
     speaker_segments = segment_speakers(
@@ -70,3 +74,14 @@ def transcribe(
         transcript.to_excel(output_file_path, index=False)
     else:
         raise TypeError("Only .csv and .xlsx are valid file types.")
+
+
+if __name__ == "__main__":
+    transcribe(
+        "../data/sample.wav", "../data/sample.xlsx",
+        hf_token=get_secret("../secrets.yaml", "hf-token"),
+        s2t_model="openai/whisper-tiny",
+        device="cpu",
+        language="german",
+        num_speakers=2
+    )
