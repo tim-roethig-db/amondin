@@ -58,7 +58,6 @@ def speech2text(
     model = AutoModelForSpeechSeq2Seq.from_pretrained(
         model,
         torch_dtype=torch_dtype,
-        low_cpu_mem_usage=True,
         use_safetensors=True
     )
     model.to(device)
@@ -78,7 +77,7 @@ def speech2text(
         device=device,
     )
 
-    result = pipe(audio)
+    result = pipe(audio, generate_kwargs={"task": "transcribe", "language": language})
     print(result)
     return result["text"]
 
