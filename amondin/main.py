@@ -4,6 +4,7 @@ Main module of transcription tool
 
 from pathlib import Path
 import pandas as pd
+import torchaudio
 
 from amondin.tools import convert_audio_to_wav
 from amondin.segment_speakers import segment_speakers
@@ -43,9 +44,13 @@ def transcribe(
         input_file_path = f"{file_name}.wav"
         print(f"Created {input_file_path}")
 
+    waveform, sample_rate = torchaudio.load("audio.wav")
+
+    audio = {"waveform": waveform, "sample_rate": sample_rate}
+
     print("Segmenting speakers...")
     speaker_segments = segment_speakers(
-        input_file_path,
+        audio,
         hf_token=hf_token,
         num_speakers=num_speakers,
         device=device
