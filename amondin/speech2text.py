@@ -9,7 +9,7 @@ from transformers import WhisperProcessor, WhisperForConditionalGeneration, Auto
 def speech2text(
         audio: dict,
         device: str,
-        model: str,
+        model_name: str,
         language: str
 ) -> str:
     """
@@ -56,17 +56,17 @@ def speech2text(
     """
 
     model = AutoModelForSpeechSeq2Seq.from_pretrained(
-        model,
+        model_name,
         torch_dtype=torch_dtype,
         use_safetensors=True
     )
     model.to(device)
 
-    processor = AutoProcessor.from_pretrained(model)
+    processor = AutoProcessor.from_pretrained(model_name)
 
     pipe = pipeline(
         "automatic-speech-recognition",
-        model=model,
+        model=model_name,
         tokenizer=processor.tokenizer,
         feature_extractor=processor.feature_extractor,
         max_new_tokens=128,

@@ -57,7 +57,7 @@ def transcribe(
         print(f"Transcribing part {i+1} of {len(speaker_segments)}")
         text = speech2text(
             speaker_section["audio"],
-            model=s2t_model,
+            model_name=s2t_model,
             language=language,
             device=device
         )
