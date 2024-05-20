@@ -17,9 +17,11 @@ def transcribe(
         language: str = None,
         num_speakers: int = None,
         s2t_model: str = "openai/whisper-tiny",
+        tolerance: float = 1.0
 ):
     """
     Transcribe a give audio.wav file.
+    :param tolerance: Seconds of silence between the same speaker to still merge the segments
     :param device: Device to run the model on [cpu, cuda or cuda:x]
     :param output_file_path:
     :param input_file_path:
@@ -45,7 +47,8 @@ def transcribe(
         audio,
         hf_token=hf_token,
         num_speakers=num_speakers,
-        device=device
+        device=device,
+        tolerance=tolerance
     )
 
     print("Transcribing audio...")
