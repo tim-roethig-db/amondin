@@ -7,7 +7,7 @@ from pyannote.audio import Pipeline, Audio
 
 
 def segment_speakers(
-        file_path: str,
+        audio: dict,
         hf_token: str,
         device: str,
         num_speakers: int,
@@ -16,7 +16,7 @@ def segment_speakers(
     """
     Detect speakers in audio.wav file and label the segments of each speaker accordingly
     :param device: Device to run the model on
-    :param file_path:
+    :param audio:
     :param hf_token: HF token since the pyannote model needs authentication
     :param num_speakers: Set to None to self detect the number of speakers
     :param tolerance:
@@ -32,7 +32,7 @@ def segment_speakers(
     pipeline.to(torch.device(device))
 
     # inference on the whole file
-    annotation = pipeline(file_path, num_speakers=num_speakers)
+    annotation = pipeline(audio, num_speakers=num_speakers)
 
     # merge passages from same speaker if occurring in less than tolerance after each other
     annotation = annotation.support(tolerance)
@@ -44,7 +44,7 @@ def segment_speakers(
     speaker_segments = []
     for segment in segments:
         # get audio passages as numpy array
-        waveform, sample_rate = Audio().crop(file_path, segment)
+        waveform, sample_rate = Audio().crop(audio, segment)
         waveform = torch.squeeze(waveform)
         waveform = waveform.numpy()
 
