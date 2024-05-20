@@ -16,7 +16,7 @@ def transcribe(
         device: str = "cpu",
         language: str = None,
         num_speakers: int = None,
-        s2t_model: str = "openai/whisper-tiny"
+        s2t_model: str = "openai/whisper-tiny",
 ):
     """
     Transcribe a give audio.wav file.
@@ -71,4 +71,9 @@ def transcribe(
 
     # save transcript
     print(transcript.to_markdown(index=False))
-    transcript.to_csv(output_file_path, index=False, sep=";")
+    if output_file_path.endswith(".csv"):
+        transcript.to_csv(output_file_path, index=False, sep=";")
+    elif output_file_path.endswith(".xlsx"):
+        transcript.to_excel(output_file_path, index=False)
+    else:
+        raise TypeError("Only .csv and .xlsx are valid file types.")
