@@ -11,14 +11,14 @@ def segment_speakers(
         hf_token: str,
         device: str,
         num_speakers: int,
-        min_speaker: int,
-        max_speaker: int,
+        min_speakers: int,
+        max_speakers: int,
         tolerance: float
 ) -> list[dict]:
     """
     Detect speakers in audio.wav file and label the segments of each speaker accordingly
-    :param max_speaker:
-    :param min_speaker:
+    :param max_speakers:
+    :param min_speakers:
     :param device: Device to run the model on
     :param audio:
     :param hf_token: HF token since the pyannote model needs authentication
@@ -39,8 +39,8 @@ def segment_speakers(
     annotation = pipeline(
         audio,
         num_speakers=num_speakers,
-        min_speaker=min_speaker,
-        max_speaker=max_speaker
+        min_speakers=min_speakers,
+        max_speakers=max_speakers
     )
 
     # merge passages from same speaker if occurring in less than tolerance after each other
