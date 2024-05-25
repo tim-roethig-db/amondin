@@ -64,6 +64,11 @@ def transcribe(
         language=language,
         device=device
     )
+    for i, segment in enumerate(segments):
+        del segment["audio"]
+        segment["text"] = transcript[i]
+    print(segments)
+    transcript = pd.DataFrame(segments)
     """
     transcript = []
     for i, speaker_section in enumerate(speaker_segments):
@@ -78,10 +83,10 @@ def transcribe(
         transcript.append(
             [speaker_section["speaker"], speaker_section["time_stamp"], text]
         )
-    """
+    
     # Store transcript in pandas Data Frame
     transcript = pd.DataFrame(data=transcript, columns=["speaker", "time_stamp", "text"])
-
+    """
     # save transcript
     print(transcript.to_markdown(index=False))
     if output_file_path.endswith(".csv"):
