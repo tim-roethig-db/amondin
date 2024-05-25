@@ -53,24 +53,25 @@ def segment_speakers(
     speaker_segments = []
     for segment in segments:
         print(segment.duration)
-        # get audio passages as numpy array
-        waveform, sample_rate = Audio().crop(audio, segment, mode="pad")
-        waveform = torch.squeeze(waveform)
-        waveform = waveform.numpy()
+        if segment.duration > 0.05:
+            # get audio passages as numpy array
+            waveform, sample_rate = Audio().crop(audio, segment, mode="pad")
+            waveform = torch.squeeze(waveform)
+            waveform = waveform.numpy()
 
-        # get speaker belonging to audio
-        speaker = annotation.get_labels(segment)
+            # get speaker belonging to audio
+            speaker = annotation.get_labels(segment)
 
-        # craft dict representing passage
-        segment = {
-            "speaker": list(speaker)[0],
-            "time_stamp": str(segment),
-            "audio": {
-                "raw": waveform,
-                "sampling_rate": sample_rate,
-            },
-        }
+            # craft dict representing passage
+            segment = {
+                "speaker": list(speaker)[0],
+                "time_stamp": str(segment),
+                "audio": {
+                    "raw": waveform,
+                    "sampling_rate": sample_rate,
+                },
+            }
 
-        speaker_segments.append(segment)
+            speaker_segments.append(segment)
 
     return speaker_segments
