@@ -53,7 +53,7 @@ def segment_speakers(
     speaker_segments = []
     for segment in segments:
         print(segment.duration)
-        if segment.duration > 0.05:
+        if segment.duration > 0.1:
             # get audio passages as numpy array
             waveform, sample_rate = Audio().crop(audio, segment, mode="pad")
             waveform = torch.squeeze(waveform)
