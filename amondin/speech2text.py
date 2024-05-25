@@ -7,11 +7,11 @@ from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
 
 def speech2text(
-        audio: dict,
+        audio: list[dict],
         device: str,
         model_name: str,
         language: str
-) -> str:
+) -> list[str]:
     """
     Translate audio to text
     :param device: Device to run the model on [cpu, cuda or cuda:x]
@@ -54,4 +54,3 @@ def speech2text(
 
     # return sting in list
     return [result["text"] for result in results]
-    return results["text"]

@@ -71,7 +71,6 @@ def segment_speakers(
                     "sampling_rate": sample_rate,
                 },
             }
-            print(segment)
 
             speaker_segments.append(segment)
 

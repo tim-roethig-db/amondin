@@ -67,26 +67,9 @@ def transcribe(
     for i, segment in enumerate(segments):
         del segment["audio"]
         segment["text"] = transcript[i]
-    print(segments)
-    transcript = pd.DataFrame(segments)
-    """
-    transcript = []
-    for i, speaker_section in enumerate(speaker_segments):
-        print(f"Transcribing part {i+1} of {len(speaker_segments)}")
-        text = speech2text(
-            speaker_section["audio"],
-            model_name=s2t_model,
-            language=language,
-            device=device
-        )
 
-        transcript.append(
-            [speaker_section["speaker"], speaker_section["time_stamp"], text]
-        )
-    
-    # Store transcript in pandas Data Frame
-    transcript = pd.DataFrame(data=transcript, columns=["speaker", "time_stamp", "text"])
-    """
+    transcript = pd.DataFrame(segments)
+
     # save transcript
     print(transcript.to_markdown(index=False))
     if output_file_path.endswith(".csv"):
