@@ -16,5 +16,6 @@ setup(
         "numpy",
         "torch",
         "torchaudio",
+        "openpyxl",
     ]
 )

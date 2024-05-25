@@ -65,12 +65,14 @@ def segment_speakers(
             # craft dict representing passage
             segment = {
                 "speaker": list(speaker)[0],
-                "time_stamp": str(segment),
+                "start": segment.start,
+                "end": segment.end,
                 "audio": {
                     "raw": waveform,
                     "sampling_rate": sample_rate,
                 },
             }
+            print(segment)
 
             speaker_segments.append(segment)
 
