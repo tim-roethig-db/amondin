@@ -71,11 +71,12 @@ def transcribe(
 
     transcript = pd.DataFrame(segments)
 
+    print("Post processing...")
     transcript = merge_rows_consecutive_speaker(transcript)
 
     transcript = format_time_stamp(transcript)
 
-    # save transcript
+    print("Saving transcript...")
     print(transcript.to_markdown(index=False))
     if output_file_path.endswith(".csv"):
         transcript.to_csv(output_file_path, index=False, sep=";")
