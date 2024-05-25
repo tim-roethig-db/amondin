@@ -47,7 +47,7 @@ def transcribe(
     }
 
     print("Segmenting speakers...")
-    speaker_segments = segment_speakers(
+    segments = segment_speakers(
         audio,
         hf_token=hf_token,
         num_speakers=num_speakers,
@@ -58,6 +58,13 @@ def transcribe(
     )
 
     print("Transcribing audio...")
+    transcript = speech2text(
+        [segment["audio"] for segment in segments],
+        model_name=s2t_model,
+        language=language,
+        device=device
+    )
+    """
     transcript = []
     for i, speaker_section in enumerate(speaker_segments):
         print(f"Transcribing part {i+1} of {len(speaker_segments)}")
@@ -71,7 +78,7 @@ def transcribe(
         transcript.append(
             [speaker_section["speaker"], speaker_section["time_stamp"], text]
         )
-
+    """
     # Store transcript in pandas Data Frame
     transcript = pd.DataFrame(data=transcript, columns=["speaker", "time_stamp", "text"])
 

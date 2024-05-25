@@ -52,7 +52,6 @@ def segment_speakers(
     # store all passages in a list of dicts
     speaker_segments = []
     for segment in segments:
-        print(segment.duration)
         if segment.duration > 0.1:
             # get audio passages as numpy array
             waveform, sample_rate = Audio().crop(audio, segment, mode="pad")

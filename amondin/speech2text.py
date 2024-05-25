@@ -44,7 +44,7 @@ def speech2text(
         device=device,
     )
 
-    result = pipe(
+    results = pipe(
         audio,
         generate_kwargs={
             "task": "transcribe",
@@ -53,4 +53,5 @@ def speech2text(
     )
 
     # return sting in list
-    return result["text"]
+    return [result["text"] for result in results]
+    return results["text"]
