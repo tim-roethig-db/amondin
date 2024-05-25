@@ -8,7 +8,7 @@ import torchaudio
 from amondin.tools import get_secret
 from amondin.segment_speakers import segment_speakers
 from amondin.speech2text import speech2text
-from amondin.post_processing import merge_rows_consecutive_speaker
+from amondin.post_processing import merge_rows_consecutive_speaker, format_time_stamp
 
 
 def transcribe(
@@ -72,6 +72,8 @@ def transcribe(
     transcript = pd.DataFrame(segments)
 
     transcript = merge_rows_consecutive_speaker(transcript)
+
+    transcript = format_time_stamp(transcript)
 
     # save transcript
     print(transcript.to_markdown(index=False))
