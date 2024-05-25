@@ -20,7 +20,7 @@ def transcribe(
         min_speakers: int = None,
         max_speakers: int = None,
         s2t_model: str = "openai/whisper-tiny",
-        tolerance: float = 1.0
+        tolerance: float = 0.0
 ):
     """
     Transcribe a give audio.wav file.
