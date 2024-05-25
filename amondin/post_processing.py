@@ -1,8 +1,16 @@
-from datetime import timedelta
+"""
+Module containing functions for post-processing of the transcript
+"""
+
 import pandas as pd
 
 
 def _seconds_to_time_stamp(seconds: float) -> str:
+    """
+    Function to convert seconds to a time stamp
+    :param seconds:
+    :return:
+    """
     minutes, seconds = divmod(seconds, 60)
 
     milliseconds = int((seconds - int(seconds)) * 1000)
@@ -11,6 +19,11 @@ def _seconds_to_time_stamp(seconds: float) -> str:
 
 
 def merge_rows_consecutive_speaker(transcript: pd.DataFrame) -> pd.DataFrame:
+    """
+    Function to merge consecutive segments of the same speaker into one segment.
+    :param transcript:
+    :return:
+    """
     transcript['speaker_group'] = (transcript['speaker'] != transcript['speaker'].shift()).cumsum()
 
     transcript = transcript.groupby(['speaker_group', 'speaker']).agg({
@@ -25,6 +38,11 @@ def merge_rows_consecutive_speaker(transcript: pd.DataFrame) -> pd.DataFrame:
 
 
 def format_time_stamp(transcript: pd.DataFrame) -> pd.DataFrame:
+    """
+    Function to convert the start and end seconds into a time range string.
+    :param transcript:
+    :return:
+    """
     transcript['start'] = transcript['start'].apply(_seconds_to_time_stamp)
     transcript['end'] = transcript['end'].apply(_seconds_to_time_stamp)
 
