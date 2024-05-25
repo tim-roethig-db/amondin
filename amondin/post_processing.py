@@ -7,7 +7,8 @@ def merge_rows_consecutive_speaker(transcript: pd.DataFrame) -> pd.DataFrame:
     print(transcript.to_markdown())
 
     transcript = transcript.groupby(['speaker_group', 'speaker']).agg({
-        'time_stamp': lambda x: ' '.join(x),
+        'start': "min",
+        "end": "max",
         'text': lambda x: ' '.join(x)
     }).reset_index()
 
