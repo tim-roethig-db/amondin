@@ -65,6 +65,7 @@ def transcribe(
         language=language,
         device=device
     )
+
     for i, segment in enumerate(segments):
         del segment["audio"]
         segment["text"] = transcript[i]
