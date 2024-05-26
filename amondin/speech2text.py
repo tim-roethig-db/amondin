@@ -52,5 +52,5 @@ def speech2text(
         }
     )
 
-    # return sting in list
+    # return string in a list
     return [result["text"] for result in results]
