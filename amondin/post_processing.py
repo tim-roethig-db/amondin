@@ -26,7 +26,7 @@ def merge_rows_consecutive_speaker(transcript: pd.DataFrame) -> pd.DataFrame:
     """
     # create a column speaker_group that signals if speakers have consecutive segments
     transcript["speaker_group"] = (transcript["speaker"] != transcript["speaker"].shift()).cumsum()
-    
+
     # group by speaker_group and speaker to merge consecutive segments
     transcript = transcript.groupby(["speaker_group", "speaker"]).agg({
         "start": "min",
