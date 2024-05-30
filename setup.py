@@ -8,14 +8,14 @@ setup(
     python_requires=">=3.9",
     packages=find_packages(),
     install_requires=[
-        "transformers",
+        "numpy",
+        "openpyxl",
+        "pandas",
         "pyannote.audio",
         "pyannote.core",
         "pyyaml",
-        "pandas",
-        "numpy",
         "torch",
         "torchaudio",
-        "openpyxl",
+        "transformers",
     ]
 )

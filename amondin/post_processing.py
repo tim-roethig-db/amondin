@@ -31,7 +31,7 @@ def merge_rows_consecutive_speaker(transcript: pd.DataFrame) -> pd.DataFrame:
     transcript = transcript.groupby(["speaker_group", "speaker"]).agg({
         "start": "min",
         "end": "max",
-        "text": lambda x: " ".join(x)
+        "text": " ".join
     }).reset_index()
 
     # drop helper column speaker_group
