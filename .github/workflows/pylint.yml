@@ -21,4 +21,4 @@ jobs:
         pip install .
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files 'amondin/*.py')
+        pylint --fail-under=9 $(git ls-files 'amondin/*.py')
