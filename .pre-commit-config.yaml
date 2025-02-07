@@ -1,12 +1,11 @@
 repos:
-  - repo: https://github.com/psf/black
-    rev: 23.1.0
-    hooks:
-      - id: black
-        language_version: python3.11
-
   - repo: local
     hooks:
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [python]
       - id: pylint
         name: pylint
         entry: pylint
@@ -14,3 +13,15 @@ repos:
         types: [python]
         args:
           - "--disable=R0913,R0917,R0914"
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        types: [python]
+        args:
+          - "--ignore-missing-imports"
+      - id: bandit
+        name: bandit
+        entry: bandit
+        language: system
+        types: [python]

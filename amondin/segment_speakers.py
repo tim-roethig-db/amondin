@@ -2,6 +2,7 @@
 Module containing the segment_speakers function
 """
 
+from typing import Optional
 import torch
 from pyannote.audio import Pipeline, Audio
 
@@ -10,10 +11,10 @@ def segment_speakers(
     audio: dict,
     hf_token: str,
     device: str,
-    num_speakers: int,
-    min_speakers: int,
-    max_speakers: int,
-    tolerance: float,
+    num_speakers: Optional[int] = None,
+    min_speakers: Optional[int] = None,
+    max_speakers: Optional[int] = None,
+    tolerance: float = 0.0,
 ) -> list[dict]:
     """
     Detect speakers in audio.wav file and label the segments of each speaker accordingly

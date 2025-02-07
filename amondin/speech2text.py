@@ -2,12 +2,13 @@
 Module containing the speech to text function
 """
 
+from typing import Optional
 import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
 
 def speech2text(
-    audio: list[dict], device: str, model_name: str, language: str
+    audio: list[dict], device: str, model_name: str, language: Optional[str] = None
 ) -> list[str]:
     """
     Translate audio to text

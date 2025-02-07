@@ -2,6 +2,7 @@
 Main module of transcription tool
 """
 
+from typing import Optional
 import pandas as pd
 import torchaudio
 
@@ -16,10 +17,10 @@ def transcribe(
     output_file_path: str,
     hf_token: str,
     device: str = "cpu",
-    language: str = None,
-    num_speakers: int = None,
-    min_speakers: int = None,
-    max_speakers: int = None,
+    language: Optional[str] = None,
+    num_speakers: Optional[int] = None,
+    min_speakers: Optional[int] = None,
+    max_speakers: Optional[int] = None,
     s2t_model: str = "openai/whisper-tiny",
     tolerance: float = 0.0,
 ):
@@ -68,19 +69,19 @@ def transcribe(
         del segment["audio"]
         segment["text"] = transcript[i]
 
-    transcript = pd.DataFrame(segments)
+    transcript_df = pd.DataFrame(segments)
 
     print("Post processing...")
-    transcript = merge_rows_consecutive_speaker(transcript)
+    transcript_df = merge_rows_consecutive_speaker(transcript_df)
 
-    transcript = format_time_stamp(transcript)
+    transcript_df = format_time_stamp(transcript_df)
 
     print("Saving transcript...")
-    print(transcript.to_markdown(index=False))
+    print(transcript_df.to_markdown(index=False))
     if output_file_path.endswith(".csv"):
-        transcript.to_csv(output_file_path, index=False, sep=";")
+        transcript_df.to_csv(output_file_path, index=False, sep=";")
     elif output_file_path.endswith(".xlsx"):
-        transcript.to_excel(output_file_path, index=False)
+        transcript_df.to_excel(output_file_path, index=False)
     else:
         raise TypeError("Only .csv and .xlsx are valid file types.")
 
