@@ -1,6 +1,16 @@
-   repos:
-     - repo: https://github.com/psf/black
-       rev: 23.1.0  # Use the latest stable version of Black
-       hooks:
-         - id: black
-           language_version: python3.11  # Match the Python version used in your project
+repos:
+  - repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+      - id: black
+        language_version: python3.11
+
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [python]
+        args:
+          - "--disable=R0913,R0917,R0914"
