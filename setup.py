@@ -17,5 +17,5 @@ setup(
         "torch",
         "torchaudio",
         "transformers",
-    ]
+    ],
 )

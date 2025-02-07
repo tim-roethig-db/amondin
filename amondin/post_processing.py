@@ -25,14 +25,16 @@ def merge_rows_consecutive_speaker(transcript: pd.DataFrame) -> pd.DataFrame:
     :return:
     """
     # create a column speaker_group that signals if speakers have consecutive segments
-    transcript["speaker_group"] = (transcript["speaker"] != transcript["speaker"].shift()).cumsum()
+    transcript["speaker_group"] = (
+        transcript["speaker"] != transcript["speaker"].shift()
+    ).cumsum()
 
     # group by speaker_group and speaker to merge consecutive segments
-    transcript = transcript.groupby(["speaker_group", "speaker"]).agg({
-        "start": "min",
-        "end": "max",
-        "text": " ".join
-    }).reset_index()
+    transcript = (
+        transcript.groupby(["speaker_group", "speaker"])
+        .agg({"start": "min", "end": "max", "text": " ".join})
+        .reset_index()
+    )
 
     # drop helper column speaker_group
     transcript = transcript.drop(columns="speaker_group")
@@ -50,8 +52,7 @@ def format_time_stamp(transcript: pd.DataFrame) -> pd.DataFrame:
     transcript["end"] = transcript["end"].apply(_seconds_to_time_stamp)
 
     transcript["time_stamp"] = transcript.apply(
-        lambda row: f"{row['start']} -> {row['end']}",
-        axis="columns"
+        lambda row: f"{row['start']} -> {row['end']}", axis="columns"
     )
 
     return transcript[["speaker", "time_stamp", "text"]]

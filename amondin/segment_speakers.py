@@ -7,13 +7,13 @@ from pyannote.audio import Pipeline, Audio
 
 
 def segment_speakers(
-        audio: dict,
-        hf_token: str,
-        device: str,
-        num_speakers: int,
-        min_speakers: int,
-        max_speakers: int,
-        tolerance: float
+    audio: dict,
+    hf_token: str,
+    device: str,
+    num_speakers: int,
+    min_speakers: int,
+    max_speakers: int,
+    tolerance: float,
 ) -> list[dict]:
     """
     Detect speakers in audio.wav file and label the segments of each speaker accordingly
@@ -40,7 +40,7 @@ def segment_speakers(
         audio,
         num_speakers=num_speakers,
         min_speakers=min_speakers,
-        max_speakers=max_speakers
+        max_speakers=max_speakers,
     )
 
     # merge passages from same speaker if occurring in less than tolerance after each other

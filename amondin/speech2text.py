@@ -7,10 +7,7 @@ from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
 
 def speech2text(
-        audio: list[dict],
-        device: str,
-        model_name: str,
-        language: str
+    audio: list[dict], device: str, model_name: str, language: str
 ) -> list[str]:
     """
     Translate audio to text
@@ -24,9 +21,7 @@ def speech2text(
     torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
     model = AutoModelForSpeechSeq2Seq.from_pretrained(
-        model_name,
-        torch_dtype=torch_dtype,
-        use_safetensors=True
+        model_name, torch_dtype=torch_dtype, use_safetensors=True
     )
     model.to(device)
 
@@ -44,13 +39,7 @@ def speech2text(
         device=device,
     )
 
-    results = pipe(
-        audio,
-        generate_kwargs={
-            "task": "transcribe",
-            "language": language
-        }
-    )
+    results = pipe(audio, generate_kwargs={"task": "transcribe", "language": language})
 
     # return string in a list
     return [result["text"] for result in results]
