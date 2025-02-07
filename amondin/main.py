@@ -12,15 +12,16 @@ from amondin.post_processing import merge_rows_consecutive_speaker, format_time_
 
 
 def transcribe(
-        input_file_path: str, output_file_path: str,
-        hf_token: str,
-        device: str = "cpu",
-        language: str = None,
-        num_speakers: int = None,
-        min_speakers: int = None,
-        max_speakers: int = None,
-        s2t_model: str = "openai/whisper-tiny",
-        tolerance: float = 0.0
+    input_file_path: str,
+    output_file_path: str,
+    hf_token: str,
+    device: str = "cpu",
+    language: str = None,
+    num_speakers: int = None,
+    min_speakers: int = None,
+    max_speakers: int = None,
+    s2t_model: str = "openai/whisper-tiny",
+    tolerance: float = 0.0,
 ):
     """
     Transcribe a give audio.wav file.
@@ -42,10 +43,7 @@ def transcribe(
 
     print(f"Loading {input_file_path}...")
     waveform, sample_rate = torchaudio.load(input_file_path)
-    audio = {
-        "waveform": waveform,
-        "sample_rate": sample_rate
-    }
+    audio = {"waveform": waveform, "sample_rate": sample_rate}
 
     print("Segmenting speakers...")
     segments = segment_speakers(
@@ -55,7 +53,7 @@ def transcribe(
         min_speakers=min_speakers,
         max_speakers=max_speakers,
         device=device,
-        tolerance=tolerance
+        tolerance=tolerance,
     )
 
     print("Transcribing audio...")
@@ -63,7 +61,7 @@ def transcribe(
         [segment["audio"] for segment in segments],
         model_name=s2t_model,
         language=language,
-        device=device
+        device=device,
     )
 
     for i, segment in enumerate(segments):
@@ -89,10 +87,11 @@ def transcribe(
 
 if __name__ == "__main__":
     transcribe(
-        "../data/sample.wav", "../data/sample.xlsx",
+        "../data/sample.wav",
+        "../data/sample.xlsx",
         hf_token=get_secret("../secrets.yaml", "hf-token"),
         s2t_model="openai/whisper-tiny",
         device="cpu",
         language="german",
-        num_speakers=2
+        num_speakers=2,
     )
