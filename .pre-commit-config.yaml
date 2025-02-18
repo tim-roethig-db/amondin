@@ -25,3 +25,10 @@ repos:
         entry: bandit
         language: system
         types: [python]
+        exclude: tests.py
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        types: [python]
+        files: tests.py

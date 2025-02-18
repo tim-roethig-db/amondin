@@ -12,7 +12,6 @@ setup(
     python_requires=">=3.11",
     packages=find_packages(),
     install_requires=[
-        "pyyaml",
         "numpy",
         "openpyxl",
         "pandas",
@@ -22,5 +21,11 @@ setup(
         "torch",
         "torchaudio",
         "transformers",
+        "black",
+        "pylint",
+        "mypy",
+        "black",
+        "pytest",
+        "hypothesis",
     ],
 )
